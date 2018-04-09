@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>{{ message }}</p>
+  <!--在input输入框中我们可以使用v-model指令来实现双向数据绑定-->
+  <input v-model="message">
+
+  <button v-on:click="reverseMessage">反转字符串</button>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Runoob!'
+    },
+    methods:{
+      reverseMessage:function () {
+        this.message = this.message.split('').reverse().join('')
+        //this.message = this.message.reverse() //Uncaught TypeError: this.message.reverse is not a function
+      }
+    }
+  })
+</script>
+</body>
+</html>

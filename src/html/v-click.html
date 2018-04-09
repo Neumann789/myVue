@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>vue</title>
+  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <!--doSomething 指的是事件名-->
+  <a v-on:click ="doSomething"></a>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data:{
+      doSomething: 'hell world'
+    }
+  })
+</script>
+</body>
+</html>

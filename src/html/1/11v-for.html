@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	最受欢迎港台歌手排行榜：
+	<ul id="demo">
+		<li v-for="(singer,index) in singers">
+			{{singer.no}} {{singer.name}}  （索引值为:{{index}}）
+		</li>
+	</ul>
+
+	<script>
+	var app = new Vue({
+		el:'#demo',
+		data:{
+			singers:[
+				{no:1, name:'王菲'},
+				{no:2, name:'谢霆锋'},
+				{no:3, name:'张柏芝'},
+				{no:4, name:'钟欣桐'}
+			]
+		}
+	});
+	</script>
+</body>
+</html>

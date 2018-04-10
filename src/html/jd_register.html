@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>京东注册</title>
+  <script src="1/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="userName">
+  <p v-check-username="userName"></p>
+  <p>{{userName}}</p>
+</div>
+
+<script>
+  Vue.directive('check-username',{
+
+    //开始绑定时候回调函数
+    bind:function () {
+    },
+    //内容更新时候的回调函数
+    update:function (newValue,oldValue) {
+      console.log(this)
+      console.log(newValue)
+      console.log(oldValue)
+      if(newValue.length>20||newValue.length<4){
+
+        this.el.innerHTML = '长度只能在4-20个字符之间'
+        this.el.style.color = 'red'
+      }else{
+        this.el.innerHTML = ''
+      }
+    },
+    unbind:function () {
+      console.log(3333)
+    }
+
+  })
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      userName: ''
+    }
+  })
+</script>
+</body>
+</html>

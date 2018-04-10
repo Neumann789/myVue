@@ -1,0 +1,911 @@
+Index: src/html/watch.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/watch.html	(revision )
++++ src/html/watch.html	(revision )
+@@ -0,0 +1,44 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<style>
++
++</style>
++<body>
++  <div id="computed_props">
++    千米:<input type="text" v-model="kilometers">
++    米:<input type="text" v-model="meters">
++  </div>
++  <p id = "info"></p>
++<script type="text/javascript">
++  var vm = new Vue({
++    el:'#computed_props',
++    data:{
++      kilometers:0,
++      meters:0
++    },
++    methods:{},
++    computed:{},
++    watch:{
++      kilometers:function (val) {
++        this.kilometers = val;
++        this.meters = val * 1000;
++      }/*,
++      meters:function (val) {
++        this.kilometers = val/1000;
++        this.meters = val;
++      }*/
++    }
++
++  })
++  vm.$watch('kilometers',function (newVal,oldVal) {
++    document.getElementById("info").innerHTML = "修改前值为："+
++      oldVal + ", 修改后值为："+newVal;
++  })
++</script>
++</body>
++</html>
+Index: src/html/test2.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/test2.html	(revision )
++++ src/html/test2.html	(revision )
+@@ -0,0 +1,26 @@
++<!DOCTYPE html>
++<html>
++<head>
++    <meta charset="utf-8">
++    <title>vue</title>
++    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
++</head>
++<body>
++<div id="vue_det">
++    <h1>site : {{site}}</h1>
++    <h1>url : {{url}}</h1>
++</div>
++<script type="text/javascript">
++    var data = {site:"阿保世界",url:"abaoworld.com",alexa:10000}
++    var vm = new Vue({
++        el:'#vue_det',
++        data:data
++    })
++
++    document.write(vm.$data == data) //true
++    document.write("<br>")
++    document.write(vm.$el == document.getElementById("vue_det")) //true
++</script>
++
++</body>
++</html>
+\ No newline at end of file
+Index: src/html/v-expression.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-expression.html	(revision )
++++ src/html/v-expression.html	(revision )
+@@ -0,0 +1,33 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
++<head>
++    <meta charset="utf-8">
++    <title>vue</title>
++    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<style>
++    .class1{
++        background: #444;
++        color: #eee;
++    }
++</style>
++<body>
++<div id="app">
++    {{5+5}}<br>
++    {{ ok ? 'YES' : 'NO' }}<br>
++    {{ message.split('').reverse().join('') }}
++    <div v-bind:id="'list-' + id">菜鸟教程</div>
++</div>
++
++<script>
++    new Vue({
++        el: '#app',
++        data: {
++            ok: true,
++            message: 'RUNOOB',
++            id : 1
++        }
++    })
++</script>
++</body>
++</html>
+\ No newline at end of file
+Index: src/html/vue_html.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/vue_html.html	(revision )
++++ src/html/vue_html.html	(revision )
+@@ -0,0 +1,22 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="utf-8">
++    <title>vue</title>
++    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
++</head>
++<body>
++    <div id = "app">
++        <div v-html="message"></div>
++    </div>
++<script>
++    new Vue({
++        el:'#app',
++        data:{
++            message:'<h>菜鸟教程</h>'
++        }
++    })
++
++</script>
++</body>
++</html>
+\ No newline at end of file
+Index: src/app3.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app3.vue	(revision )
++++ src/app3.vue	(revision )
+@@ -0,0 +1,22 @@
++<template>
++  <div id="vue_det">
++    <h1>site : {{site}}</h1>
++    <h1>url : {{url}}</h1>
++    <h1>{{details()}}</h1>
++  </div>
++</template>
++<script>
++  var vm = new Vue({
++    el: '#vue_det',
++    data: {
++      site: "菜鸟教程",
++      url: "www.runoob.com",
++      alexa: "10000"
++    },
++    methods: {
++      details: function() {
++        return  this.site + " - 学的不仅是技术，更是梦想！";
++      }
++    }
++  })
++</script>
+Index: src/html/v_component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v_component.html	(revision )
++++ src/html/v_component.html	(revision )
+@@ -0,0 +1,24 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <meta charset="utf-8">
++  <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++  <runoob></runoob>
++</div>
++
++<script>
++  // 注册
++  Vue.component('runoob', {
++    template: '<h1>自定义组件!</h1>'
++  })
++  // 创建根实例
++  new Vue({
++    el: '#app'
++  })
++</script>
++</body>
++</html>
+Index: src/html/v-click3.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-click3.html	(revision )
++++ src/html/v-click3.html	(revision )
+@@ -0,0 +1,45 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml"
++      xmlns:v-on="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++  <!-- `greet` 是在下面定义的方法名 -->
++  <button v-on:click="greet">Greet</button>
++  <button v-on:keyup.enter="move">move</button>
++  <button @keyup.space="move2">move2</button>
++</div>
++
++<script>
++  var app = new Vue({
++    el: '#app',
++    data: {
++      name: 'Vue.js'
++    },
++    // 在 `methods` 对象中定义方法
++    methods: {
++      greet: function (event) {
++        // `this` 在方法里指当前 Vue 实例
++        alert('Hello ' + this.name + '!')
++        // `event` 是原生 DOM 事件
++        if (event) {
++          alert(event.target.tagName)
++        }
++      },
++      move: function (event) {
++        alert('I am move1 !')
++      },
++      move2: function (event) {
++        alert('I am move2 !')
++      }
++    }
++  })
++  // 也可以用 JavaScript 直接调用方法
++  app.greet() // -> 'Hello Vue.js!'
++</script>
++</body>
++</html>
+Index: src/html/v-select_all.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-select_all.html	(revision )
++++ src/html/v-select_all.html	(revision )
+@@ -0,0 +1,68 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++
++<div id="app">
++  <p>
++    全选：
++  </p>
++  <input type="checkbox" id="checkbox" v-model="checked" @click="changeAllChecked()">
++  <label for="checkbox">
++    {{checked}}
++  </label>
++  <p>
++    多个复选框：
++  </p>
++  <input type="checkbox" id="runoob" value="Runoob" v-model="checkedNames">
++  <label for="runoob">
++    Runoob
++  </label>
++  <input type="checkbox" id="google" value="Google" v-model="checkedNames">
++  <label for="google">
++    Google
++  </label>
++  <input type="checkbox" id="taobao" value="Taobao" v-model="checkedNames">
++  <label for="taobao">
++    taobao
++  </label>
++  <br>
++  <span>
++		选择的值为:{{checkedNames}}
++	</span>
++</div>
++<script>
++  new Vue({
++    el: '#app',
++    data: {
++      checked: false,
++      checkedNames: [],
++      checkedArr: ["Runoob", "Taobao", "Google"]
++    },
++    methods: {
++      changeAllChecked: function() {
++        if (this.checked) {
++          this.checkedNames = this.checkedArr
++        } else {
++          this.checkedNames = []
++        }
++      }
++    },
++    watch: {
++      "checkedNames": function() {
++        if (this.checkedNames.length == this.checkedArr.length) {
++          this.checked = true
++        } else {
++          this.checked = false
++        }
++      }
++    }
++  })
++</script>
++
++</body>
++</html>
+Index: src/html/v-if.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-if.html	(revision )
++++ src/html/v-if.html	(revision )
+@@ -0,0 +1,31 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<style>
++
++</style>
++<body>
++  <div id="app">
++      <p v-if="seen">现在你看到我了</p>
++      <template v-if="ok">
++          <h1>菜鸟教程</h1>
++          <p>学的不仅是技术，更是梦想!</p>
++      </template>
++  </div>
++  <script>
++    new Vue({
++      el:'#app',
++      data:{
++        seen:true,
++        ok:true
++      }
++
++    })
++
++  </script>
++</body>
++</html>
+Index: src/html/v-model.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-model.html	(revision )
++++ src/html/v-model.html	(revision )
+@@ -0,0 +1,10 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <title>Title</title>
++</head>
++<body>
++
++</body>
++</html>
+Index: src/html/v-click.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-click.html	(revision )
++++ src/html/v-click.html	(revision )
+@@ -0,0 +1,23 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++  <!--doSomething 指的是事件名-->
++  <a v-on:click ="doSomething"></a>
++</div>
++
++<script>
++  new Vue({
++    el: '#app',
++    data:{
++      doSomething: 'hell world'
++    }
++  })
++</script>
++</body>
++</html>
+Index: src/html/v-bind.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-bind.html	(revision )
++++ src/html/v-bind.html	(revision )
+@@ -0,0 +1,32 @@
++<!DOCTYPE html>
++<html xmlns:v-on="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++  <p>{{ message }}</p>
++  <!--在input输入框中我们可以使用v-model指令来实现双向数据绑定-->
++  <input v-model="message">
++
++  <button v-on:click="reverseMessage">反转字符串</button>
++</div>
++
++<script>
++  new Vue({
++    el: '#app',
++    data: {
++      message: 'Runoob!'
++    },
++    methods:{
++      reverseMessage:function () {
++        this.message = this.message.split('').reverse().join('')
++        //this.message = this.message.reverse() //Uncaught TypeError: this.message.reverse is not a function
++      }
++    }
++  })
++</script>
++</body>
++</html>
+Index: src/html/test1.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/test1.html	(revision )
++++ src/html/test1.html	(revision )
+@@ -0,0 +1,31 @@
++<!DOCTYPE html>
++<html>
++<head>
++    <meta charset="utf-8">
++    <title>vue</title>
++    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
++</head>
++<body>
++<div id="vue_det">
++    <h1>site : {{site}}</h1>
++    <h1>url : {{url}}</h1>
++    <h1>{{details()}}</h1>
++</div>
++<script type="text/javascript">
++    var vm = new Vue({
++        el: '#vue_det',
++        data: {
++            site: "菜鸟教程",
++            url: "www.runoob.com",
++            alexa: "10000"
++        },
++        methods: {
++            details: function() {
++                return  this.site + " - 学的不仅是技术，更是梦想！";
++            }
++        }
++    })
++</script>
++
++</body>
++</html>
+\ No newline at end of file
+Index: src/html/v-过滤器.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-过滤器.html	(revision )
++++ src/html/v-过滤器.html	(revision )
+@@ -0,0 +1,29 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <meta charset="utf-8">
++  <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++  {{ message | capitalize }}
++</div>
++
++<script>
++  new Vue({
++    el: '#app',
++    data: {
++      message: 'runoob'
++    },
++    filters: {
++      capitalize: function (value) {
++        if (!value) return ''
++        value = value.toString()
++        return value.charAt(0).toUpperCase() + value.slice(1)
++      }
++    }
++  })
++</script>
++</body>
++</html>
+Index: src/html/hello2.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/hello2.html	(revision )
++++ src/html/hello2.html	(revision )
+@@ -0,0 +1,22 @@
++<!DOCTYPE html>
++<html>
++<head>
++    <meta charset="utf-8">
++    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
++    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++    <p>{{ message }}</p>
++</div>
++
++<script>
++    new Vue({
++        el: '#app',
++        data: function () {
++            return {message: 'Hello Vue.js 2018!'}
++        }
++    })
++</script>
++</body>
++</html>
+\ No newline at end of file
+Index: src/html/v-select.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-select.html	(revision )
++++ src/html/v-select.html	(revision )
+@@ -0,0 +1,31 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++
++<div id="app">
++  <select v-model="selected" name="fruit">
++    <option value="">选择一个网站</option>
++    <option value="www.runoob.com">Runoob</option>
++    <option value="www.google.com">Google</option>
++  </select>
++
++  <div id="output">
++    选择的网站是: {{selected}}
++  </div>
++</div>
++<script>
++  new Vue({
++    el: '#app',
++    data: {
++      selected: ''
++    }
++  })
++</script>
++
++</body>
++</html>
+Index: src/html/v-click2.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-click2.html	(revision )
++++ src/html/v-click2.html	(revision )
+@@ -0,0 +1,23 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++  <button v-on:click="counter += 1">增加 1</button>
++  <p>这个按钮被点击了 {{ counter }} 次。</p>
++</div>
++
++<script>
++  new Vue({
++    el: '#app',
++    data:{
++      counter:0
++    }
++  })
++</script>
++</body>
++</html>
+Index: src/html/v-for.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v-for.html	(revision )
++++ src/html/v-for.html	(revision )
+@@ -0,0 +1,40 @@
++<!DOCTYPE html>
++<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
++<head>
++  <meta charset="utf-8">
++  <title>vue</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<style>
++
++</style>
++<body>
++<div id="app">
++  <ol>
++    <li v-for="site in sites">
++      {{site.name}}
++    </li>
++  </ol>
++  <ul>
++    <li v-for="n in 10">
++      {{ n }}
++    </li>
++
++  </ul>
++</div>
++<script>
++  new Vue({
++    el:'#app',
++    data:{
++      sites:[
++        {name:'Runoob'},
++        {name:'Google'},
++        {name:'Taobao'}
++      ]
++    }
++
++  })
++
++</script>
++</body>
++</html>
+Index: src/html/hello.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/hello.html	(revision )
++++ src/html/hello.html	(revision )
+@@ -0,0 +1,28 @@
++<!DOCTYPE html>
++<html>
++<head>
++    <meta charset="UTF-8">
++    <!-- import CSS -->
++    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
++</head>
++<body>
++<div id="app">
++    <el-button @click="visible = true">Button</el-button>
++    <el-dialog :visible.sync="visible" title="Hello world">
++        <p>Try Element</p>
++    </el-dialog>
++</div>
++</body>
++<!-- import Vue before Element -->
++<script src="https://unpkg.com/vue/dist/vue.js"></script>
++<!-- import JavaScript -->
++<script src="https://unpkg.com/element-ui/lib/index.js"></script>
++<script>
++    new Vue({
++        el: '#app',
++        data: function() {
++            return { visible: false }
++        }
++    })
++</script>
++</html>
+\ No newline at end of file
+Index: src/html/v_component2.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v_component2.html	(revision )
++++ src/html/v_component2.html	(revision )
+@@ -0,0 +1,27 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <meta charset="utf-8">
++  <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
++  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
++</head>
++<body>
++<div id="app">
++  <child message="hello!"></child>
++</div>
++
++<script>
++  // 注册
++  Vue.component('child', {
++    // 声明 props
++    props: ['message'],
++    // 同样也可以在 vm 实例中像 “this.message” 这样使用
++    template: '<span>{{ message }}</span>'
++  })
++  // 创建根实例
++  new Vue({
++    el: '#app'
++  })
++</script>
++</body>
++</html>
+Index: src/html/v_routing.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/html/v_routing.html	(revision )
++++ src/html/v_routing.html	(revision )
+@@ -0,0 +1,58 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <meta charset="utf-8">
++  <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
++  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
++  <script src="https://cdn.bootcss.com/vue-router/2.7.0/vue-router.min.js"></script>
++</head>
++<body>
++<div id="app">
++  <h1>Hello App!</h1>
++  <p>
++    <!-- 使用 router-link 组件来导航. -->
++    <!-- 通过传入 `to` 属性指定链接. -->
++    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
++    <router-link to="/foo">Go to Foo</router-link>
++    <router-link to="/bar">Go to Bar</router-link>
++  </p>
++  <!-- 路由出口 -->
++  <!-- 路由匹配到的组件将渲染在这里 -->
++  <router-view></router-view>
++</div>
++
++<script>
++  // 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
++
++  // 1. 定义（路由）组件。
++  // 可以从其他文件 import 进来
++  const Foo = { template: '<div>foo</div>' }
++  const Bar = { template: '<div>bar</div>' }
++
++  // 2. 定义路由
++  // 每个路由应该映射一个组件。 其中"component" 可以是
++  // 通过 Vue.extend() 创建的组件构造器，
++  // 或者，只是一个组件配置对象。
++  // 我们晚点再讨论嵌套路由。
++  const routes = [
++    { path: '/foo', component: Foo },
++    { path: '/bar', component: Bar }
++  ]
++
++  // 3. 创建 router 实例，然后传 `routes` 配置
++  // 你还可以传别的配置参数, 不过先这么简单着吧。
++  const router = new VueRouter({
++    routes // （缩写）相当于 routes: routes
++  })
++
++  // 4. 创建和挂载根实例。
++  // 记得要通过 router 配置参数注入路由，
++  // 从而让整个应用都有路由功能
++  const app = new Vue({
++    router
++  }).$mount('#app')
++
++  // 现在，应用已经启动了！
++</script>
++</body>
++</html>
+Index: src/components/hello.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/components/hello.vue	(revision )
++++ src/components/hello.vue	(revision )
+@@ -0,0 +1,16 @@
++<template>
++  <div class="hello">
++    <h1>{{ msg }}</h1>
++  </div>
++</template>
++
++<script>
++export default {
++  name: 'hello',
++  data () {
++    return {
++      msg: '欢迎来到菜鸟教程！'
++    }
++  }
++}
++</script>
+Index: src/App.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/App.vue	(date 1523290584000)
++++ src/app.vue	(revision )
+@@ -1,0 +1,0 @@
+Index: src/main.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main.js	(date 1523290584000)
++++ src/main.js	(revision )
+@@ -1,20 +1,11 @@
+-// The Vue build version to load with the `import` command
+-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+-import Vue from 'vue'
+-import App from './app'
+-import router from './router'
++import Vue from 'vue';
++import ElementUI from 'element-ui';
++import 'element-ui/lib/theme-chalk/index.css';
++import App from './App.vue';
+ 
+-Vue.config.productionTip = false
++Vue.use(ElementUI);
+ 
+-/* eslint-disable no-new */
+-var vm = new Vue({
++new Vue({
+   el: '#app',
+-  router,
+-
+-  components: { App },
+-  template: '<app/>'
+-})
+-
+-
+-
+-
++  render: h => h(App)
++});

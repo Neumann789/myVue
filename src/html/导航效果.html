@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<title>导航效果</title>
+	<style>
+		*{margin:0;padding:0}
+		.nav{
+      /*代表上边距100px 左右自动 下边距24px*/
+			margin:100px auto 24px;
+      /*超出部分自动隐藏*/
+			overflow:hidden;
+      background-color: #5597b4;
+		}
+		.nav li{
+			padding:18px 30px;
+			float:left;
+			list-style-type:none;
+			color:white;
+			font-weight: bold;
+			font-size: 20px;
+			text-transform:uppercase;
+			cursor:pointer;
+		}
+
+		.home .home,.news .news,.projects .projects,.services .services,.contact .contact,.login .login,.regist .regist{
+			background-color:skyblue;
+		}
+	</style>
+  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+	<div id="demo">
+		<ul class="nav" v-bind:class="[current]">
+			<li class="home" @click="change('home')">home</li>
+			<li class="news" @click="change('news')">news</li>
+			<li class="projects" @click="change('projects')">projects</li>
+			<li class="services" @click="change('services')">services</li>
+			<li class="contact" @click="change('contact')">contact</li>
+      <li class="login" @click="change('login')">login</li>
+      <li class="regist" @click="change('regist')">regist</li>
+		</ul>
+		<div>当前页面：{{current}}</div>
+	</div>
+
+	<script>
+	new Vue({
+		el:'#demo',
+		data:{
+			current:'home'
+		},
+		methods:{
+			change: function(cur){
+				this.current = cur
+			}
+		}
+	})
+	</script>
+</body>
+</html>

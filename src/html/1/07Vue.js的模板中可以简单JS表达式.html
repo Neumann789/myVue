@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js的模板中可以简单JS表达式</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="demo">
+		<img v-bind:src="'images/04/'+num+'.jpg'" alt="">
+		<p>{{num==1?'蒋雯丽与张国立':'张国立与蒋雯丽'}}</p>
+	</div>
+
+	<script>
+	var app = new Vue({
+		el:'#demo',
+		data:{
+			num:1
+		}
+	});
+	</script>
+</body>
+</html>

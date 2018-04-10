@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js控制CSS</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="demo" v-bind:style="styles">您好！</div>
+
+	<script>
+	var app = new Vue({
+		el:'#demo',
+		data:{
+			styles:{
+				color:'cyan',
+				fontSize:'30px',
+				fontWeight:'normal'
+			}
+		}
+	});
+	</script>
+</body>
+</html>

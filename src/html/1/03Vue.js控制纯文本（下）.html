@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue.js控制纯文本（下）</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="demo">
+		<p>姓名：{{person.name}}</p>
+		<p>年龄：{{person.age}}</p>
+		<p>性别：{{person.sex}}</p>
+	</div>
+	
+	<script>
+		var app = new Vue({
+			el:'#demo',
+			data:{
+				person:{
+					name:'Vinko',
+					sex:'保密',
+					age:38
+				}
+			}
+		});
+	</script>
+</body>
+</html>

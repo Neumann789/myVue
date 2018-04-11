@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理</title>
+  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+
+  <style>
+    *{margin:0;padding:0}
+
+
+    table,td{
+      border: 1px solid lawngreen;
+      border-collapse:collapse;
+      text-align: center;
+    }
+
+    table{
+
+      width: 1200px;
+      margin: 20px auto;
+
+    }
+
+    table button{
+      border: 1px solid orange;
+    }
+
+    fieldset{
+      width: 1160px;
+      margin: 0px auto;
+      padding: 20px;
+    }
+
+    fieldset p{
+      line-height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>书名</th>
+        <th>作者</th>
+        <th>价格</th>
+        <th>操作</th>
+      </tr>
+      <tr v-for="(book,index) in books">
+        <td>{{book.id}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.price}}</td>
+        <td>
+          <button @click="deleteBook(index)">删除</button>
+        </td>
+
+      </tr>
+    </table>
+
+    <fieldset>
+      <legend>添加新书</legend>
+      <p>书名:<input type="text" v-model="newBook.name"></p>
+      <p>作者:<input type="tesx" v-model="newBook.author"></p>
+      <p>价格:<input type="text" v-model="newBook.price"></p>
+      <p><button @click="addBook">添加</button></p>
+    </fieldset>
+  </div>
+
+<script>
+  var app = new Vue({
+    el:"#app",
+    data:{
+      books:[
+        {id:1,name:'xxx1',author:'a1',price:'8.00'},
+        {id:2,name:'xxx2',author:'a2',price:'8.00'},
+        {id:3,name:'xxx3',author:'a3',price:'8.00'},
+        {id:4,name:'xxx4',author:'a4',price:'8.00'}
+      ],
+      newBook:{
+        id:0,
+        name:'',
+        author:'',
+        price:''
+      }
+    },
+    methods:{
+      deleteBook:function (index) {
+        //alert(index);
+        this.books.splice(index,1);
+      },
+      findMaxId:function () {
+        var maxId = 0;
+        for(var i=0;i<this.books.length;i++){
+          if(maxId < this.books[i].id){
+            maxId = this.books[i].id;
+          }
+        }
+        return maxId;
+      },
+      addBook:function () {
+        var maxId = this.findMaxId();
+        this.newBook.id = maxId +1;
+        this.books.push(this.newBook);
+        this.newBook = {};//清空
+      }
+
+    }
+  })
+
+</script>
+</body>
+</html>

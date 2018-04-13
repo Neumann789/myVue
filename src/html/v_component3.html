@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+  <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+  <input type="text" v-model="np"/>
+  <br>
+  <child message="hello!" v-bind:chgnp="np"></child>
+</div>
+
+<script>
+  // 注册
+  Vue.component('child', {
+    // 声明 props
+    props: ['message','chgnp'],
+    // 同样也可以在 vm 实例中像 “this.message” 这样使用
+    template: '<h2>{{chgnp}}</h2><h1>{{ message }}2222</h1>'
+  })
+  // 创建根实例
+  new Vue({
+    el: '#app',
+    data:{
+      np:""
+    }
+  })
+</script>
+</body>
+</html>

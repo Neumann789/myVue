@@ -2,7 +2,8 @@ import Vue from 'vue'
 import axios from "axios";
 import Utils from "../commons/utils";
 
-const  BossURL = 'http://127.0.0.1:8080';
+//const  BossURL = 'http://127.0.0.1:8080';
+const  BossURL = 'http://192.168.188.23:8080';
 
 //为什么此处axios不需要调Vue.use呢？ TODO
 axios.defaults.baseURL = BossURL + '/boss'

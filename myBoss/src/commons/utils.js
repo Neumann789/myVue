@@ -17,11 +17,17 @@ function getLoginSessionId() {
   }
 }
 
+function toJsonFromVue(obj) {
+  if(obj == null) return obj
+  else return JSON.parse(JSON.stringify(obj))
+}
+
 export default {
   getLoginSessionId,
   save,
   clear,
-  read
+  read,
+  toJsonFromVue,
 }
 
 

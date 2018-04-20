@@ -5,9 +5,14 @@ import App from './App'
 import router from './router'
 import store from './store'
 import {heightDom, setMenuActive} from "./commons/menu";
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
+import '../lib/font-awesome/css/font-awesome.min.css'
 
 //阻止启动生产消息，常用作指令
 Vue.config.productionTip = false
+
+Vue.use(ElementUI)
 
 
 router.beforeEach((to, from, next) => {

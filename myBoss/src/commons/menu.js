@@ -2,7 +2,7 @@ import router from '../router'
 import store from '../store'
 
 export function setMenuActive(path) {
-  store.dispatch('saveCurrentMenuActivueAction',path)
+  store.dispatch('saveCurrentMenuActiveAction',path)
 }
 
 function heightChange() {
